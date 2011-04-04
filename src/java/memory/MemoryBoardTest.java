@@ -9,6 +9,18 @@ public class MemoryBoardTest {
 
 		board.start();
 	
-		System.out.print(board);
+		System.out.println(board);
+
+		board.tryCard(0);
+		
+		System.out.println(board);
+
+		board.tryCard(1);
+
+		System.out.println(board);
+
+		board.nextTurn();
+
+		System.out.println(board);
 	}
 }
