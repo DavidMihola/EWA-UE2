@@ -1,11 +1,13 @@
 package memory;
 
-public class MemoryBoardTest {
+import java.lang.String;
+
+public class MemoryBoardTest2 {
 	public static void main(String[] args) {
 		MemoryBoard board = new MemoryBoard();
 
-		board.addPair(new MemoryCard("1"));
-		board.addPair(new MemoryCard("2"));
+		board.addPair(new MemoryCard(makeImageTag("at", "Österreich"));
+		board.addPair(new MemoryCard(makeImageTag("cz", "Tschechien")));
 
 		board.start();
 	
@@ -22,5 +24,9 @@ public class MemoryBoardTest {
 		board.nextTurn();
 
 		System.out.println(board);
+	}
+
+	public static String makeImageTag(String countryCode, String countryName) {
+		return String.format("<img src=\"img/cards/%s.jpg\" alt=\"%s\" />", countryCode, countryName);
 	}
 }
