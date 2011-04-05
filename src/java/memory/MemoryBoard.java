@@ -15,25 +15,23 @@ import java.lang.StringBuilder;
 // Um diese zu verwalten wird eine weitere Klasse MemoryGame notwendig sein.
 public class MemoryBoard {
 
-	private ArrayList<Card> cards;
+	private ArrayList<MemoryCard> cards;
 
 	private boolean started;
 
-	private Card trial1, trial2;
+	private MemoryCard trial1, trial2;
 	
 	private MemoryBoardState state;
 	
 	public MemoryBoard() {
-		cards = new ArrayList<Card>();
+		cards = new ArrayList<MemoryCard>();
 		started = false;
 	}
 
-	// Achtung: Die beiden Karten eines Paares sind verschiedene Objekte
-	// mit gleichem Inhalt - nicht zwei Referenzen auf dasselbe Objekt!
-	public void addPair(String content) {
+	public void addPair(MemoryCard card) {
 		if (!started) {
-			cards.add(new Card(content));
-			cards.add(new Card(content));
+			cards.add(card);
+			cards.add(card.clone());
 		}
 	}
 
@@ -51,7 +49,7 @@ public class MemoryBoard {
 		if (trial1 == null) {
 			trial1 = cards.get(index);
 			trial1.reveal();
-			state = MemoryBoardState.TURN_UNFINISHED;
+			state = MemoryBoardState.UNFINISHED_TURN;
 		// Wenn die aufgedeckte Karte schon die zweite ist, müssen die
 		// beiden Karten verglichen werden
 		} else if (trial2 == null) {
@@ -76,35 +74,6 @@ public class MemoryBoard {
 		state = MemoryBoardState.NEW_TURN;
 	}
 
-	class Card {
-		private String content;
-		private boolean revealed;
-
-		public Card(String content) {
-			this.content = content;
-			revealed = false;
-		}
-		
-		public boolean isRevealed() {
-			return revealed;
-		}
-
-		public void reveal() {
-			revealed = true;
-		}
-
-		public void hide() {
-			revealed = false;
-		}
-
-		public String getContent() {
-			return content;
-		}
-
-		public String toString() {
-			return content;
-		}
-	}
 
 	// toString = (concat . map show) cards
 
@@ -114,7 +83,7 @@ public class MemoryBoard {
 		int len = cards.size();
 
 		for (int i = 0; i < len; i++) {
-			Card card = cards.get(i);
+			MemoryCard card = cards.get(i);
 			output.append("Card Nr. " + i);
 			if (card.isRevealed()) {
 				output.append(" shows " + card);
