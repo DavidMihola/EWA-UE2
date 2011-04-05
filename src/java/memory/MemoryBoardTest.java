@@ -4,10 +4,10 @@ import java.lang.String;
 
 public class MemoryBoardTest {
 	public static void main(String[] args) {
-		MemoryBoard board = new MemoryBoard();
+		MemoryBoard<String> board = new MemoryBoard<String>();
 
-		board.addPair(new MemoryCard(makeImageTag("at", "Österreich")));
-		board.addPair(new MemoryCard(makeImageTag("cz", "Tschechien")));
+		board.addPair(makeImageTag("at", "Österreich"));
+		board.addPair(makeImageTag("cz", "Tschechien"));
 
 		board.start();
 	

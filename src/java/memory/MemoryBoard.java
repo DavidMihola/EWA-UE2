@@ -13,9 +13,9 @@ import java.lang.StringBuilder;
 
 // Das MemoryBoard interessiert sich allerdings nicht für Spieler oder deren Punktestände.
 // Um diese zu verwalten wird eine weitere Klasse MemoryGame notwendig sein.
-public class MemoryBoard {
+public class MemoryBoard<T>{
 
-	private ArrayList<MemoryCard> cards;
+	private ArrayList<MemoryCard<T>> cards;
 
 	private boolean started;
 
@@ -24,14 +24,14 @@ public class MemoryBoard {
 	private MemoryBoardState state;
 	
 	public MemoryBoard() {
-		cards = new ArrayList<MemoryCard>();
+		cards = new ArrayList<MemoryCard<T>>();
 		started = false;
 	}
 
-	public void addPair(MemoryCard card) {
+	public void addPair(T content) {
 		if (!started) {
-			cards.add(card);
-			cards.add(card.clone());
+			cards.add(new MemoryCard<T>(content));
+			cards.add(new MemoryCard<T>(content));
 		}
 	}
 

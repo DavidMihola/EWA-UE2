@@ -30,8 +30,5 @@ public class MemoryCard<T> {
 		return content.toString();
 	}
 
-	public MemoryCard<T> clone() {
-		return new MemoryCard(this.content);
-	}
 }
 
