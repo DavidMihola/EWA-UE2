@@ -2,11 +2,11 @@ package memory;
 
 import java.lang.String;
 
-public class MemoryBoardTest2 {
+public class MemoryBoardTest {
 	public static void main(String[] args) {
 		MemoryBoard board = new MemoryBoard();
 
-		board.addPair(new MemoryCard(makeImageTag("at", "Österreich"));
+		board.addPair(new MemoryCard(makeImageTag("at", "Österreich")));
 		board.addPair(new MemoryCard(makeImageTag("cz", "Tschechien")));
 
 		board.start();
