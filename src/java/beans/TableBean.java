@@ -92,4 +92,8 @@ public class TableBean {
 	public void setTriesOponent(int tries) {
 		triesOponent = tries;
 	}
+
+	public String getBoardState() {
+		return board.getState().toString();
+	}
 }

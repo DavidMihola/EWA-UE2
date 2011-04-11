@@ -27,7 +27,9 @@ public class TableServlet extends HttpServlet {
 		
 		MemoryBoard board = tableBean.getBoard();
 
-		if (board.turnFinished()) {
+		if (board.gameOver()) {
+			board.restart();
+		} else if (board.turnFinished()) {
 			board.nextTurn();
 		} else if (karte != null) {
 			board.tryCard(Integer.parseInt(karte));

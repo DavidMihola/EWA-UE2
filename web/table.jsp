@@ -101,6 +101,7 @@
 <% }%>
 
 </ul>
+<jsp:getProperty name="tableBean" property="boardState" />
 			</div>
 			<hr class="solid_clear" />
 		</div>

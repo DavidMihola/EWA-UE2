@@ -19,7 +19,7 @@ public class MemoryBoard<T>{
 
 	private boolean started;
 
-	private MemoryCard trial1, trial2;
+	private int trial1, trial2; // Maybe Int
 	
 	private MemoryBoardState state;
 	
@@ -29,40 +29,62 @@ public class MemoryBoard<T>{
 		cards = new ArrayList<MemoryCard<T>>();
 		started = false;
 		remainingPairs = 0;
+		trial1 = -1;
+		trial2 = -1; // Nothing
 	}
 
 	public void addPair(T content) {
 		if (!started) {
 			cards.add(new MemoryCard<T>(content));
 			cards.add(new MemoryCard<T>(content));
-			remainingPairs += 1;
 		}
 	}
 
 	public void start() {
-		if (!started) {
+		//if (!started) {
+			remainingPairs = cards.size() / 2;
 			Collections.shuffle(cards);
 			started = true;
 			nextTurn();
-		}	
+		//}	
+	}
+
+	public void restart() {
+		for (MemoryCard card : cards) {
+			card.hide();
+		}
+		start();
 	}
 
 	public MemoryBoardState tryCard(int index) {
-		// Wenn die aufgedeckte Karte in diesem Zug in die erste ist,
-		// muss sonst nichts gemacht werden.
-		if (trial1 == null) {
-			trial1 = cards.get(index);
-			trial1.reveal();
+		// Wenn man versucht, eine Karte aufzudecken, die schon aufgedeckt ist,
+		// passiert gar nichts
+		// Das verhindert insbesondere auch, dass man die gleiche Karte in einem
+		// Zug zwei mal aufdeckt
+		if (cards.get(index).isRevealed()) {
+			return state;
+		}
+
+		// Andernfalls wird die gewählte Karte ist noch nicht auf jeden Fall aufgedeckt
+
+		cards.get(index).reveal();
+
+		// Wenn die gewählte Karte in diesem Zug in die erste ist,
+		// wird sie aufgedeckt, aber sonst muss nichts gemacht werden.
+		if (trial1 == -1) {
+			trial1 = index;
 			state = MemoryBoardState.UNFINISHED_TURN;
-		// Wenn die aufgedeckte Karte schon die zweite ist, müssen die
-		// beiden Karten verglichen werden
-		} else if (trial2 == null) {
-			trial2 = cards.get(index);
-			trial2.reveal();
-			if ((trial1.getContent() == trial2.getContent()) &&
-			    (trial1 != trial2)) {
-				state = MemoryBoardState.PAIR_FOUND;
+		// Wenn die gewählte Karte schon die zweite ist, wird sie auch aufgedeckt
+		// und die beiden Karten müssen verglichen werden
+		} else if (trial2 == -1) {
+			trial2 = index;
+			if (cards.get(trial1).getContent() == cards.get(trial2).getContent()) {
 				remainingPairs -= 1;
+				if (remainingPairs > 0) {
+					state = MemoryBoardState.PAIR_FOUND;
+				} else {
+					state = MemoryBoardState.GAME_OVER;
+				}
 			} else {
 				state = MemoryBoardState.NO_PAIR_FOUND;
 			}
@@ -72,11 +94,11 @@ public class MemoryBoard<T>{
 
 	public void nextTurn() {
 		if (state == MemoryBoardState.NO_PAIR_FOUND) {
-			trial1.hide();
-			trial2.hide();
+			cards.get(trial1).hide();
+			cards.get(trial2).hide();
 		}
-		trial1 = null;
-		trial2 = null;
+		trial1 = -1;
+		trial2 = -1;
 		state = MemoryBoardState.NEW_TURN;
 	}
 
@@ -84,8 +106,16 @@ public class MemoryBoard<T>{
 		return ((state == MemoryBoardState.PAIR_FOUND) || (state == MemoryBoardState.NO_PAIR_FOUND));
 	}
 
+	public boolean gameOver() {
+		return (state == MemoryBoardState.GAME_OVER);
+	}
+
 	public int getRemainingPairs() {
 		return remainingPairs;
+	}
+
+	public MemoryBoardState getState() {
+		return state;
 	}
 
 	// toString = (concat . map show) cards
