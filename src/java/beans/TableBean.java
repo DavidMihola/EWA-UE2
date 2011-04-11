@@ -29,9 +29,6 @@ public class TableBean {
 		board.addPair("<img src=\"img/cards/cz.jpg\" alt=\"Tschechien\" />");
 
 		board.start();
-
-		//board.tryCard(0);
-		//board.tryCard(2);
 	}
 
 	public ArrayList<String> getCardsAsXHTML() {
@@ -52,16 +49,8 @@ public class TableBean {
 		return output;
 	}
 
-	public void tryCard(int cardNr) {
-		MemoryBoardState state = board.tryCard(cardNr);
-		switch(state) {
-			case PAIR_FOUND:
-				board.nextTurn();
-				break;
-			case NO_PAIR_FOUND:
-				;
-				break;
-		}
+	public MemoryBoard<String> getBoard() {
+		return board;
 	}
 
 	public int getRemainingPairs() {

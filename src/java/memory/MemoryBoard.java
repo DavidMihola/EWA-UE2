@@ -59,7 +59,8 @@ public class MemoryBoard<T>{
 		} else if (trial2 == null) {
 			trial2 = cards.get(index);
 			trial2.reveal();
-			if (trial1.getContent() == trial2.getContent()) {
+			if ((trial1.getContent() == trial2.getContent()) &&
+			    (trial1 != trial2)) {
 				state = MemoryBoardState.PAIR_FOUND;
 				remainingPairs -= 1;
 			} else {
@@ -77,6 +78,10 @@ public class MemoryBoard<T>{
 		trial1 = null;
 		trial2 = null;
 		state = MemoryBoardState.NEW_TURN;
+	}
+
+	public boolean turnFinished() {
+		return ((state == MemoryBoardState.PAIR_FOUND) || (state == MemoryBoardState.NO_PAIR_FOUND));
 	}
 
 	public int getRemainingPairs() {
