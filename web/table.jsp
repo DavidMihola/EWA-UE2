@@ -57,13 +57,13 @@
 					<tbody>
 					<tr>
 						<th>Paare</th>
-						<td>1</td>
-						<td>0</td>
+						<td><jsp:getProperty name="tableBean" property="pairsSelf" /></td>
+						<td><jsp:getProperty name="tableBean" property="pairsOponent" /></td>
 					</tr>
 					<tr>
 						<th>Versuche</th>
-						<td>3</td>
-						<td>2</td>
+						<td><jsp:getProperty name="tableBean" property="triesSelf" /></td>
+						<td><jsp:getProperty name="tableBean" property="triesOponent" /></td>
 					</tr>
 					<tr>
 						<th>Zeit</th>
