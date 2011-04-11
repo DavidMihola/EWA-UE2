@@ -94,38 +94,13 @@
 			</div>
 			<div id="cards">
 				<h2 class="hidden">Spielfeld</h2>
-<ul><!--
- --><li><a title="klicken um aufzudecken" href="?karte=1"><span class="hidden">Karte 1</span></a></li><!--
- --><li><a title="klicken um aufzudecken" href="?karte=2"><span class="hidden">Karte 2</span></a></li><!--
- --><li><a title="klicken um aufzudecken" href="?karte=3"><span class="hidden">Karte 3</span></a></li><!--
- --><li><a title="klicken um aufzudecken" href="?karte=4"><span class="hidden">Karte 4</span></a></li><!--
- --><li><a title="klicken um aufzudecken" href="?karte=5"><span class="hidden">Karte 5</span></a></li><!--
- --><li><a title="klicken um aufzudecken" href="?karte=6"><span class="hidden">Karte 6</span></a></li><!--
- --><li><a title="klicken um aufzudecken" href="?karte=7"><img src="img/cards/at.jpg" alt="Österreich" /></a></li><!--
- --><li><a title="klicken um aufzudecken" href="?karte=8"><span class="hidden">Karte 8</span></a></li><!--
- --><li><a title="klicken um aufzudecken" href="?karte=9"><span class="hidden">Karte 9</span></a></li><!--
- --><li><a title="klicken um aufzudecken" href="?karte=10"><span class="hidden">Karte 10</span></a></li><!--
- --><li><a title="klicken um aufzudecken" href="?karte=11"><span class="hidden">Karte 11</span></a></li><!--
- --><li><a title="klicken um aufzudecken" href="?karte=12"><span class="hidden">Karte 12</span></a></li><!--
- --><li><a title="klicken um aufzudecken" href="?karte=13"><span class="hidden">Karte 13</span></a></li><!--
- --><li><a title="klicken um aufzudecken" href="?karte=14"><span class="hidden">Karte 14</span></a></li><!--
- --><li><a title="klicken um aufzudecken" href="?karte=15"><span class="hidden">Karte 15</span></a></li><!--
- --><li><a title="klicken um aufzudecken" href="?karte=16"><span class="hidden">Karte 16</span></a></li><!--
- --><li><a title="klicken um aufzudecken" href="?karte=17"><span class="hidden">Karte 17</span></a></li><!--
- --><li><a title="klicken um aufzudecken" href="?karte=18"><span class="hidden">Karte 18</span></a></li><!--
- --><li><a title="klicken um aufzudecken" href="?karte=19"><span class="hidden">Karte 19</span></a></li><!--
- --><li><a title="klicken um aufzudecken" href="?karte=20"><span class="hidden">Karte 20</span></a></li><!--
- --><li><a title="klicken um aufzudecken" href="?karte=21"><span class="hidden">Karte 21</span></a></li><!--
- --><li><a title="klicken um aufzudecken" href="?karte=22"><span class="hidden">Karte 22</span></a></li><!--
- --><li><a title="klicken um aufzudecken" href="?karte=23"><span class="hidden">Karte 23</span></a></li><!--
- --><li><a title="klicken um aufzudecken" href="?karte=24"><span class="hidden">Karte 24</span></a></li><!--
- --><li><a title="klicken um aufzudecken" href="?karte=25"><span class="hidden">Karte 25</span></a></li><!--
- --><li><a title="klicken um aufzudecken" href="?karte=26"><img src="img/cards/at.jpg" alt="Österreich" /></a></li><!--
- --><li><a title="klicken um aufzudecken" href="?karte=27"><span class="hidden">Karte 27</span></a></li><!--
- --><li><a title="klicken um aufzudecken" href="?karte=28"><span class="hidden">Karte 28</span></a></li><!--
- --><li><a title="klicken um aufzudecken" href="?karte=29"><span class="hidden">Karte 29</span></a></li><!--
- --><li><a title="klicken um aufzudecken" href="?karte=30"><span class="hidden">Karte 30</span></a></li><!--
- --></ul>
+<ul>
+
+<% for (String card : tableBean.getCardsAsXHTML()) { %>
+<li> <%= card %> </li>
+<% }%>
+
+</ul>
 			</div>
 			<hr class="solid_clear" />
 		</div>

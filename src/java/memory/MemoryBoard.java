@@ -23,15 +23,19 @@ public class MemoryBoard<T>{
 	
 	private MemoryBoardState state;
 	
+	private int remainingPairs; 
+
 	public MemoryBoard() {
 		cards = new ArrayList<MemoryCard<T>>();
 		started = false;
+		remainingPairs = 0;
 	}
 
 	public void addPair(T content) {
 		if (!started) {
 			cards.add(new MemoryCard<T>(content));
 			cards.add(new MemoryCard<T>(content));
+			remainingPairs += 1;
 		}
 	}
 
@@ -57,6 +61,7 @@ public class MemoryBoard<T>{
 			trial2.reveal();
 			if (trial1.getContent() == trial2.getContent()) {
 				state = MemoryBoardState.PAIR_FOUND;
+				remainingPairs -= 1;
 			} else {
 				state = MemoryBoardState.NO_PAIR_FOUND;
 			}
@@ -74,8 +79,15 @@ public class MemoryBoard<T>{
 		state = MemoryBoardState.NEW_TURN;
 	}
 
+	public int getRemainingPairs() {
+		return remainingPairs;
+	}
 
 	// toString = (concat . map show) cards
+
+	public ArrayList<MemoryCard<T>> getCards() {
+		return cards;
+	}
 
 	public String toString() {
 		StringBuilder output = new StringBuilder();

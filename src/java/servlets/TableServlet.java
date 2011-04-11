@@ -20,11 +20,13 @@ public class TableServlet extends HttpServlet {
 		if (tableBean == null)
 			tableBean = new TableBean();
 
+		/*
 		tableBean.setRemainingPairs(-14);
 		tableBean.setPairsSelf(-1);
 		tableBean.setPairsOponent(-2);
 		tableBean.setTriesSelf(-3);
 		tableBean.setTriesOponent(-4);
+		*/
 
 		session.setAttribute("tableBean", tableBean);
 
