@@ -1,6 +1,7 @@
 package servlets;
 
 import beans.TableBean;
+import memory.MemoryBoard;
 
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
@@ -9,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpServletResponse;
+
+import java.lang.Integer;
 
 public class TableServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -19,6 +22,16 @@ public class TableServlet extends HttpServlet {
 		TableBean tableBean = (TableBean) session.getAttribute("tableBean");
 		if (tableBean == null)
 			tableBean = new TableBean();
+
+		String karte = request.getParameter("karte");
+		
+		MemoryBoard board = tableBean.getBoard();
+
+		if (board.turnFinished()) {
+			board.nextTurn();
+		} else if (karte != null) {
+			board.tryCard(Integer.parseInt(karte));
+		} 
 
 		/*
 		tableBean.setRemainingPairs(-14);
