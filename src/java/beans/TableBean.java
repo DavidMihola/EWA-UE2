@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import memory.MemoryBoard;
 import memory.MemoryCard;
+import memory.MemoryBoardState;
 
 public class TableBean {
 	private int remainingPairs;
@@ -18,6 +19,10 @@ public class TableBean {
 		triesSelf = 0;
 		triesOponent = 0;
 
+		start();
+	}
+
+	public void start() {
 		board = new MemoryBoard<String>();
 
 		board.addPair("<img src=\"img/cards/at.jpg\" alt=\"Österreich\" />");
@@ -25,8 +30,8 @@ public class TableBean {
 
 		board.start();
 
-		board.tryCard(0);
-		board.tryCard(2);
+		//board.tryCard(0);
+		//board.tryCard(2);
 	}
 
 	public ArrayList<String> getCardsAsXHTML() {
@@ -45,6 +50,18 @@ public class TableBean {
 		}
 
 		return output;
+	}
+
+	public void tryCard(int cardNr) {
+		MemoryBoardState state = board.tryCard(cardNr);
+		switch(state) {
+			case PAIR_FOUND:
+				board.nextTurn();
+				break;
+			case NO_PAIR_FOUND:
+				;
+				break;
+		}
 	}
 
 	public int getRemainingPairs() {

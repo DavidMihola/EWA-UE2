@@ -16,9 +16,19 @@ public class TableServlet extends HttpServlet {
 
 		HttpSession session = request.getSession(true);
 
+		String cardString = request.getParameter("karte");
+
 		TableBean tableBean = (TableBean) session.getAttribute("tableBean");
 		if (tableBean == null)
 			tableBean = new TableBean();
+
+		if (cardString != null) {
+			int cardNr = Integer.parseInt(cardString);
+			tableBean.tryCard(cardNr);
+		}
+
+		// nicht vergessen das hier zu ENTFERNEN!
+		if (request.getParameter("backdoor") != null && request.getParameter("backdoor").equals("start")) tableBean.start();
 
 		/*
 		tableBean.setRemainingPairs(-14);

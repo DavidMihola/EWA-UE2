@@ -89,6 +89,10 @@ public class MemoryBoard<T>{
 		return cards;
 	}
 
+	public MemoryCard<T> getCard(int cardNr) {
+		return cards.get(cardNr);
+	}
+
 	public String toString() {
 		StringBuilder output = new StringBuilder();
 
