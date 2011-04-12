@@ -27,6 +27,12 @@ public class TableBean {
 
 		board.addPair("<img src=\"img/cards/at.jpg\" alt=\"Österreich\" />");
 		board.addPair("<img src=\"img/cards/cz.jpg\" alt=\"Tschechien\" />");
+		board.addPair("<img src=\"img/cards/de.jpg\" alt=\"Deutschland\" />");
+		board.addPair("<img src=\"img/cards/fr.jpg\" alt=\"Frankreich\" />");
+		board.addPair("<img src=\"img/cards/it.jpg\" alt=\"Italien\" />");
+		board.addPair("<img src=\"img/cards/skorea.jpg\" alt=\"Südkorea\" />");
+		board.addPair("<img src=\"img/cards/tr.jpg\" alt=\"Türkei\" />");
+		board.addPair("<img src=\"img/cards/usa.jpg\" alt=\"USA\" />");
 
 		board.start();
 	}
