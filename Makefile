@@ -4,6 +4,7 @@ default:
 	javac -classpath ${CLASSPATH}:classes -d classes src/java/memory/MemoryCard.java
 	javac -classpath ${CLASSPATH}:classes -d classes src/java/memory/MemoryBoard.java
 	javac -classpath ${CLASSPATH}:classes -d classes src/java/memory/GameTable.java
+	javac -classpath ${CLASSPATH}:classes -d classes src/java/timer/Timer.java
 	javac -classpath ${CLASSPATH}:classes -d classes src/java/beans/TableBean.java
 	javac -classpath ${CLASSPATH}:classes -d classes src/java/timer/Timer.java
 	javac -classpath ${CLASSPATH}:classes -d classes src/java/beans/TimerBean.java
