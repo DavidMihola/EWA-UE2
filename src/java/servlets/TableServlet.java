@@ -35,7 +35,8 @@ public class TableServlet extends HttpServlet {
 		} else if (karte != null) {
 			MemoryBoardState result = board.tryCard(Integer.parseInt(karte));
 
-			if (result == MemoryBoardState.PAIR_FOUND) {
+			if ((result == MemoryBoardState.PAIR_FOUND) || 
+			    (result == MemoryBoardState.GAME_OVER)) {
 				tableBean.incTriesSelf();
 				tableBean.incPairsSelf();
 			} else if (result == MemoryBoardState.NO_PAIR_FOUND) {
