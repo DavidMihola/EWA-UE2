@@ -5,9 +5,8 @@ default:
 	javac -classpath ${CLASSPATH}:classes -d classes src/java/memory/MemoryBoard.java
 	javac -classpath ${CLASSPATH}:classes -d classes src/java/memory/GameTable.java
 	javac -classpath ${CLASSPATH}:classes -d classes src/java/timer/Timer.java
-	javac -classpath ${CLASSPATH}:classes -d classes src/java/beans/TableBean.java
-	javac -classpath ${CLASSPATH}:classes -d classes src/java/timer/Timer.java
 	javac -classpath ${CLASSPATH}:classes -d classes src/java/beans/TimerBean.java
+	javac -classpath ${CLASSPATH}:classes -d classes src/java/beans/TableBean.java
 	javac -classpath ${CLASSPATH}:/usr/share/java/servlet-api-2.5.jar:classes -d classes src/java/servlets/TableServlet.java
 
 install-david: default
