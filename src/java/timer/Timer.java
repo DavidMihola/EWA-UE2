@@ -30,9 +30,12 @@ public class Timer{
 	}
 
 	public long getTime() {
-		Date now = new Date();
-		long last = now.getTime() - startedAt.getTime();
-		return sum + last;
+		if (! running) {
+			return sum;
+		} else {
+			Date now = new Date();
+			long last = now.getTime() - startedAt.getTime();
+			return sum + last;
+		}
 	}
-
 }
