@@ -13,13 +13,15 @@ public class TableBean {
 	private MemoryBoard<String> board;
 
 	public TableBean() {
-		remainingPairs = 0xDEAD;
+		initialize();
+		start();
+	}
+
+	private void initialize() {
 		pairsSelf = 0;
 		pairsOponent = 0;
 		triesSelf = 0;
 		triesOponent = 0;
-
-		start();
 	}
 
 	public void start() {
@@ -55,6 +57,11 @@ public class TableBean {
 		return output;
 	}
 
+	public void reset() {
+		initialize();
+		board.restart();
+	}
+
 	public MemoryBoard<String> getBoard() {
 		return board;
 	}
@@ -75,6 +82,10 @@ public class TableBean {
 		pairsSelf = pairs;
 	}
 
+	public void incPairsSelf() {
+		pairsSelf ++;
+	}
+
 	public int getPairsOponent() {
 		return pairsOponent;
 	}
@@ -89,6 +100,10 @@ public class TableBean {
 
 	public void setTriesSelf(int tries) {
 		triesSelf = tries;
+	}
+
+	public void incTriesSelf() {
+		triesSelf ++;
 	}
 
 	public int getTriesOponent() {

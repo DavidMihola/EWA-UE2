@@ -2,6 +2,7 @@ package servlets;
 
 import beans.TableBean;
 import memory.MemoryBoard;
+import memory.MemoryBoardState;
 
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
@@ -28,11 +29,18 @@ public class TableServlet extends HttpServlet {
 		MemoryBoard board = tableBean.getBoard();
 
 		if (board.gameOver()) {
-			board.restart();
+			tableBean.reset();
 		} else if (board.turnFinished()) {
 			board.nextTurn();
 		} else if (karte != null) {
-			board.tryCard(Integer.parseInt(karte));
+			MemoryBoardState result = board.tryCard(Integer.parseInt(karte));
+
+			if (result == MemoryBoardState.PAIR_FOUND) {
+				tableBean.incTriesSelf();
+				tableBean.incPairsSelf();
+			} else if (result == MemoryBoardState.NO_PAIR_FOUND) {
+				tableBean.incTriesSelf();
+			}			
 		} 
 
 		/*
