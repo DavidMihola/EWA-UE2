@@ -67,7 +67,7 @@
 					</tr>
 					<tr>
 						<th>Zeit</th>
-						<td>0:34</td>
+						<td>${tableBean.timerBean.time}</td>
 						<td>0:50</td>
 					</tr>
 					</tbody>

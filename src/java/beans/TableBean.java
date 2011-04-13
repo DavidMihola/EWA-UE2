@@ -11,6 +11,7 @@ public class TableBean {
 	private int pairsSelf, pairsOponent;
 	private int triesSelf, triesOponent;
 	private MemoryBoard<String> board;
+	private TimerBean timerBean;
 
 	public TableBean() {
 		initialize();
@@ -22,6 +23,7 @@ public class TableBean {
 		pairsOponent = 0;
 		triesSelf = 0;
 		triesOponent = 0;
+		timerBean = new TimerBean();
 	}
 
 	public void start() {
@@ -55,6 +57,10 @@ public class TableBean {
 		}
 
 		return output;
+	}
+
+	public TimerBean getTimerBean() {
+		return timerBean;
 	}
 
 	public void reset() {
